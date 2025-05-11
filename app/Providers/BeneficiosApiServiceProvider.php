@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Http;
+use App\Http\Services\BeneficiosApiService;
+use App\Http\Handlers\BeneficiosApiHandler;
+
+class BeneficiosApiServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     */
+    public function register(): void
+    {
+        $this->app->bind('BeneficiosApiService', function ($app) {
+            return new BeneficiosApiService(new BeneficiosApiHandler);
+        });
+    }
+
+    /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        $this->registerFetchMacro();
+    }
+
+    /**
+     * Register the fetch macro.
+     *
+     * @return void
+     */
+    protected function registerFetchMacro()
+    {
+        Http::macro('beneficiosApi', function () {
+            return Http::withHeaders([
+                    'Accept' => 'application/json'
+                ])->baseUrl(env('API_BASE_URL'));
+        });
+    }
+}
