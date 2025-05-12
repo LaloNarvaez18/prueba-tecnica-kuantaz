@@ -37,7 +37,7 @@ class BeneficiosApiServiceProvider extends ServiceProvider
         Http::macro('beneficiosApi', function () {
             return Http::withHeaders([
                     'Accept' => 'application/json'
-                ])->baseUrl(env('API_BASE_URL'));
+                ])->baseUrl(env('BENEFICIOS_API_BASE_URL'));
         });
     }
 }

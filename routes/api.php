@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\BeneficiosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('/v1/beneficios', [\App\Http\Controllers\BeneficiosController::class, 'index']);
 
-Route::get('/v1/beneficios/anuales', [
-    \App\Http\Controllers\BeneficiosController::class,
-    'get_beneficios_by_year'
-]);
+Route::get('/v1/beneficios/anuales', [BeneficiosController::class, 'get_beneficios_anuales'])
+    ->name('api.beneficios.anuales');

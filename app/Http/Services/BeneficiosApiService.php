@@ -2,46 +2,63 @@
 
 namespace App\Http\Services;
 
-use Illuminate\Support\Facades\Http;
-use App\Http\Handlers\BeneficiosApiHandler;
-
+use Illuminate\Support\Collection;
+use App\Http\Adapters\BeneficiosApiResponse;
+use App\Http\Adapters\BeneficiosApiResponseFormatter;
 class BeneficiosApiService
 {
     public function __construct(
-        protected BeneficiosApiHandler $handler
-    )
-    {}
+        protected BeneficiosApiResponse $responseAdapter,
+        protected BeneficiosApiResponseFormatter $responseFormatter
+    ){}
 
-    public function getBeneficios()
+
+    /**
+     * Obtener los beneficios del usuario, filtros y fichas en una sola petición
+     *
+     * @return Collection
+     */
+    public function getBeneficiosMergeData() : Collection
     {
-        $response = $this->handler->beneficios();
+        $responses = $this->responseAdapter->getPoolResponses();
 
-        if (!$response->ok()) {
-            throw new \Exception("Error al obtener los beneficios");
-        }
+        $beneficios = $this->responseFormatter->formatResponseData($responses['beneficios']);
+        $filtros = $this->responseFormatter->formatResponseData($responses['filtros']);
+        $fichas = $this->responseFormatter->formatResponseData($responses['fichas']);
 
-        return $response->collect();
+        return $this->responseFormatter->mergeResponseData($beneficios, $filtros, $fichas);
     }
 
-    public function getFiltros()
+    /**
+     * Obtener los beneficios del usuario
+     *
+     * @return Collection
+     */
+    public function getBeneficiosData() : Collection
     {
-        $response = $this->handler->filtros();
-
-        if (!$response->ok()) {
-            throw new \Exception("Error al obtener el filtros");
-        }
-
-        return $response->collect();
+        $response = $this->responseAdapter->getBeneficiosResponse();
+        return $this->responseFormatter->formatResponseData($response);
     }
 
-    public function getFichas()
+    /**
+     * Obtener los filtros correspondientes a los beneficios
+     *
+     * @return Collection
+     */
+    public function getFiltrosData() : Collection
     {
-        $response = $this->handler->fichas();
+        $response = $this->responseAdapter->getFiltrosResponse();
+        return $this->responseFormatter->formatResponseData($response);
+    }
 
-        if (!$response->ok()) {
-            throw new \Exception("Error al obtener el fichas");
-        }
-
-        return $response->collect();
+    /**
+     * Obtener las fichas de los beneficios
+     *
+     * @return Collection
+     */
+    public function getFichasResponse() : Collection
+    {
+        $response = $this->responseAdapter->getFichasResponse();
+        return $this->responseFormatter->formatResponseData($response);
     }
 }
