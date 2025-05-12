@@ -1,0 +1,123 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Beneficios Anuales",
+        "description": "Listado de beneficios anuales obtenidos por un usuario",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/"
+        }
+    ],
+    "paths": {
+        "/api/v1/beneficios/anuales": {
+            "get": {
+                "tags": [
+                    "Beneficios"
+                ],
+                "summary": "Obtener listado de beneficios agrupados por año",
+                "description": "Retorna una lista de beneficios agrupados por año, el monto total recibido y número de beneficios obtenidos",
+                "operationId": "4918da22f3f2c590681685ebd4573602",
+                "responses": {
+                    "200": {
+                        "description": "Lista de beneficios agrupados por año",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "year": {
+                                                        "type": "integer",
+                                                        "example": 2024
+                                                    },
+                                                    "monto_total": {
+                                                        "type": "integer"
+                                                    },
+                                                    "numero_beneficios": {
+                                                        "type": "integer"
+                                                    },
+                                                    "beneficios": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id_programa": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "monto": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "fecha_recepcion": {
+                                                                    "type": "string",
+                                                                    "format": "date"
+                                                                },
+                                                                "fecha": {
+                                                                    "type": "string",
+                                                                    "format": "date"
+                                                                },
+                                                                "ano": {
+                                                                    "type": "integer",
+                                                                    "example": 2024
+                                                                },
+                                                                "view": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "ficha": {
+                                                                    "properties": {
+                                                                        "id": {
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "nombre": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "id_programa": {
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "url": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "categoria": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "descripcion": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Beneficios",
+            "description": "Beneficios"
+        }
+    ]
+}

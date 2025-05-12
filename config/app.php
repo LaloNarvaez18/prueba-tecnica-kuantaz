@@ -171,6 +171,9 @@ return [
 
         // Beneficios API Service Provider
         App\Providers\BeneficiosApIServiceProvider::class,
+
+        // Swagger
+        L5Swagger\L5SwaggerServiceProvider::class,
     ])->toArray(),
 
     /*
