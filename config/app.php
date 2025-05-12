@@ -171,7 +171,6 @@ return [
 
         // Beneficios API Service Provider
         App\Providers\BeneficiosApIServiceProvider::class,
-        App\Providers\BeneficiosCollectionServiceProvider::class,
     ])->toArray(),
 
     /*
