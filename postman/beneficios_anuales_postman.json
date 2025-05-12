@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "fb284e75-69bd-4dcb-aa56-425ab59fb39f",
+		"name": "Beneficios API",
+		"description": "API para obtener los beneficios de un usuario, agrupados por año indicando el monto total y el número de beneficios obtenidos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11431521"
+	},
+	"item": [
+		{
+			"name": "Obtener beneficios anuales",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/beneficios/anuales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"beneficios",
+						"anuales"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
