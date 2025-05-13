@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Http;
 use App\Http\Services\BeneficiosApiService;
-use App\Http\Handlers\BeneficiosApiHandler;
 
 class BeneficiosApiServiceProvider extends ServiceProvider
 {

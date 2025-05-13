@@ -76,20 +76,16 @@ class BeneficiosController extends Controller
     */
     public function get_beneficios_anuales(Request $request)
     {
-        if($request->expectsJson()){
-            $data = $this->apiService->getBeneficiosMergeData();
+        $data = $this->apiService->getBeneficiosMergeData();
 
-            $beneficiosFiltered = $this->collectionHelper->filterByAmountRange($data);
-            $beneficiosYear = $this->collectionHelper->groupByYear($beneficiosFiltered);
-            $beneficiosMapped = $this->collectionHelper->mapGroupData($beneficiosYear);
+        $beneficiosFiltered = $this->collectionHelper->filterByAmountRange($data);
+        $beneficiosYear = $this->collectionHelper->groupByYear($beneficiosFiltered);
+        $beneficiosMapped = $this->collectionHelper->mapGroupData($beneficiosYear);
 
-            return response()->json([
-                'code' => 200,
-                'success' => true,
-                'data' => $beneficiosMapped
-            ]);
-        }
-
-        return response('Request expected a JSON response', 406);
+        return response()->json([
+            'code' => 200,
+            'success' => true,
+            'data' => $beneficiosMapped
+        ]);
     }
 }

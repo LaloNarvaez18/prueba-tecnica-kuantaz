@@ -170,7 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // Beneficios API Service Provider
-        App\Providers\BeneficiosApIServiceProvider::class,
+        App\Providers\BeneficiosApiServiceProvider::class,
 
         // Swagger
         L5Swagger\L5SwaggerServiceProvider::class,
