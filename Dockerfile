@@ -1,4 +1,4 @@
-FROM php:8.1-fpm
+FROM php:8.2-fpm
 
 # Instalar dependencias de sistema
 RUN apt-get update && apt-get install -y \
@@ -8,8 +8,8 @@ RUN apt-get update && apt-get install -y \
 # Instalar Composer
 COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www
+WORKDIR /app
 
-COPY . /var/www
-RUN composer install --no-interaction \
-    && composer require darkaonline/l5-swagger --no-interaction
+COPY . .
+
+RUN composer install
