@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\BeneficiosController;
+use App\Http\Middleware\AlwaysAcceptJson;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,5 @@ use App\Http\Controllers\Api\V1\BeneficiosController;
 */
 
 Route::get('/v1/beneficios/anuales', [BeneficiosController::class, 'get_beneficios_anuales'])
-    ->name('api.beneficios.anuales');
+    ->name('api.beneficios.anuales')
+    ->middleware(AlwaysAcceptJson::class);
