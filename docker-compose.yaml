@@ -1,26 +1,40 @@
 version: "3.8"
+
 services:
+  nginx:
+    image: nginx:latest
+    container_name: server
+    ports:
+      - "8000:80"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - .:/var/www/app:delegated
+    depends_on:
+      - app
+    networks:
+      - laravel
+
   app:
     build:
       context: .
       dockerfile: Dockerfile
     image: backend
     container_name: app
-    ports:
-      - "8000:8000"
-    working_dir: /app
+    expose:
+      - "9000"
+    volumes:
+      - .:/var/www/app:delegated
+    working_dir: /var/www/app
     entrypoint:
       - /bin/sh
       - -c
       - |
+        cd /var/www/app
         php artisan key:generate
-        exec php artisan serve --host="0.0.0.0" --port="8000"
-  nginx:
-    image: nginx:latest
-    container_name: server
-    ports:
-      - "80:80"
-    volumes:
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - app
+        exec php-fpm
+    networks:
+      - laravel
+
+networks:
+  laravel:
+    driver: bridge
