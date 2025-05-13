@@ -130,6 +130,7 @@ Este proyecto cuenta pruebas automatizadas para asegurar la correcta funcionalid
     ```sh
     docker-compose exec app php artisan test
     ```
+
 - Local
     ```sh
     php artisan test
