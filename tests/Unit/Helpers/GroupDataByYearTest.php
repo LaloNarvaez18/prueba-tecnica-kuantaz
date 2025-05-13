@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use App\Helpers\BeneficiosCollectionHelper;
 use Illuminate\Support\Collection;
 
-class GroupDatByYearTest extends TestCase
+class GroupDataByYearTest extends TestCase
 {
     /**
      * Se prueba que los beneficios se agrupan correctamente por año.
