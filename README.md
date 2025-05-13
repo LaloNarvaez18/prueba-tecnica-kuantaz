@@ -63,7 +63,7 @@ Al consultar el endpoint, se debe esperar una respuesta de este tipo:
 
 ```json
 {
-    "code': "200",
+    "code": "200",
     "success": true,
     "data": [
         {
