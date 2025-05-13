@@ -11,7 +11,13 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    command: php artisan serve --host="0.0.0.0" --port="8000"
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        cd /app
+        php artisan key:generate
+        exec php artisan serve --host="0.0.0.0" --port="8000"
   nginx:
     image: nginx:stable-alpine
     ports:
