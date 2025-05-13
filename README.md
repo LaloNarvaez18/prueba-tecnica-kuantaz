@@ -54,10 +54,12 @@ En esta sección se describe como levantar los servicios en local
     ```sh
     composer install
     ```
+
 2. Genera la `APP_KEY`:
     ```sh
     php artisan key:generate
     ```
+
 4. Levanta el servidor local en el puerto `:8000`
     ```php
     php artisan serve --port=8000
