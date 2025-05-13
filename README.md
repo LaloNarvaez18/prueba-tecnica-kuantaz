@@ -4,7 +4,7 @@ Servicio para consultar los beneficios por año que ha recibido un usuario, indi
 
 ## Instalación y configuración
 
-1. En la raíz del proyecto, se debe crear el archivo `.env` y copiar el contenido disponible en el archivo `.env.example`
+1. Una vez clonado el proyecto, en la raíz, se debe crear el archivo `.env` y copiar el contenido disponible en el archivo `.env.example`
 
 2. Una vez configurado el archivo `.env`, se debe agregar la siguiente variable de entorno para consumir datos de la API externa de beneficios:
 
@@ -12,13 +12,9 @@ Servicio para consultar los beneficios por año que ha recibido un usuario, indi
     BENEFICIOS_API_BASE_URL="https://run.mocky.io/v3"
     ```
 
-3. Por último, antes de levantar los servicios, se debe generar la `app_key` del proyecto. Para ello, se ejecuta el siguiente comando:
-
-    ```sh
-    php artisan key:generate
-    ```
-
 ## Levantar Servicios
+
+### Docker
 
 Esta sección describe cómo iniciar los servicios con `docker-compose`.
 
@@ -26,7 +22,7 @@ Esta sección describe cómo iniciar los servicios con `docker-compose`.
 
 Tener instalado `docker` y `docker-compose` en tu máquina.
 
-## Comandos
+## Comandos básicos
 
 1. Ejecutar el siguiente comando para iniciar todos los servicios en segundo plano:
     ```
@@ -43,7 +39,31 @@ Tener instalado `docker` y `docker-compose` en tu máquina.
     docker-compose down
     ```
 
-## Documentación
+### Local
+
+En esta sección se describe como levantar los servicios en local
+
+#### Requisitos
+
+- PHP >=8.1 y <=8.2
+- Composer
+
+#### Pasos para ejecutar en local
+
+1. Instala las dependencias con `composer`:
+    ```sh
+    composer install
+    ```
+2. Genera la APP_KEY:
+    ```sh
+    php artisan key:generate
+    ```
+4. Levanta el servidor local en el puerto `:8000`
+    ```php
+    php artisan serve --port=8000
+    ```
+
+## Documentación API
 
 La URL base de la API es: `/api/v1`
 
@@ -92,6 +112,26 @@ Al consultar el endpoint, se debe esperar una respuesta de este tipo:
     ]
 }
 ```
+
+## Testing
+
+### Pruebas disponibles
+
+Este proyecto cuenta pruebas automatizadas para asegurar la correcta funcionalidad del código. Actualmente, se incluyen los siguientes tipos de tests:
+
+- Feature Tests
+- Unit Tests
+
+### Ejecutar pruebas
+
+- Docker
+    ```sh
+    docker-compose exec app php artisan test
+    ```
+- Local
+    ```sh
+    php artisan test
+    ```
 
 ## Postman
 
