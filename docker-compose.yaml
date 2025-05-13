@@ -22,8 +22,6 @@ services:
     container_name: app
     expose:
       - "9000"
-    volumes:
-      - .:/var/www/app:delegated
     working_dir: /var/www/app
     entrypoint:
       - /bin/sh
