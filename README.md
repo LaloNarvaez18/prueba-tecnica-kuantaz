@@ -54,7 +54,7 @@ En esta sección se describe como levantar los servicios en local
     ```sh
     composer install
     ```
-2. Genera la APP_KEY:
+2. Genera la `APP_KEY`:
     ```sh
     php artisan key:generate
     ```
